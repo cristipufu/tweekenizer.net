@@ -2,6 +2,8 @@
 
 Tokenizer for social media posts and comments. It categorizes tokens using a set of regex expressions (that can be overwritten or extended) into words, hashtags, mentions, urls, emails, time, numbers, emojis, emoticons.
 
+Supports multiple languages.
+
 ## Installation:
 
 > Install-Package Tweekenizer
@@ -33,6 +35,15 @@ tokenizer.Tokenize(tweet);
 //Token { Value = :), Category = emoticon }
 //Token { Value = 3pm, Category = time }
 //Token { Value = at, Category = word }
+
+// Tokenize a French sentence.
+var french = @"Je suis désolé:(";
+tokenizer.Tokenize(french);
+//tokenizer.ToString();
+//Token { Value = :(, Category = emoticon }
+//Token { Value = e, Category = word }
+//Token { Value = suis, Category = word }
+//Token { Value = désolé, Category = word }
 ```
 
 C# port of the [wink-tokenizer](https://github.com/winkjs/wink-tokenizer) js library with a few tweaks
