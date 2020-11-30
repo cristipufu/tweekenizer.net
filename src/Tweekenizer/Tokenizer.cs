@@ -39,8 +39,8 @@ namespace Tweekenizer
 
             var rgx = _regexCategories[categoryIndex];
 
-            var matches = Regex.Matches(sentence, rgx.Regex);
-            var fillings = Regex.Split(sentence, rgx.Regex);
+            var matches = Regex.Matches(sentence, rgx.Regex, RegexOptions.IgnoreCase);
+            var fillings = Regex.Split(sentence, rgx.Regex, RegexOptions.IgnoreCase);
 
             foreach (var match in matches)
             {
