@@ -4,6 +4,8 @@ Tokenizer for social media posts and comments. It categorizes tokens into words,
 
 Supports multiple languages.
 
+[![NuGet](https://img.shields.io/nuget/v/Tweekenizer.svg)](https://www.nuget.org/packages/Tweekenizer/) 
+
 ## Installation:
 
 > Install-Package Tweekenizer
