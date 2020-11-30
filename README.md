@@ -1,6 +1,6 @@
 # Tweekenizer
 
-Tokenizer for social media posts and comments. It categorizes tokens using a set or regexes (that can be overwritten or extended) into words, hashtags, mentions, urls, emails, time, numbers, emojis, emoticons.
+Tokenizer for social media posts and comments. It categorizes tokens using a set of regex expressions (that can be overwritten or extended) into words, hashtags, mentions, urls, emails, time, numbers, emojis, emoticons.
 
 ## Installation:
 
