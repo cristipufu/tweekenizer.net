@@ -4,16 +4,16 @@ namespace Tweekenizer
 {
     public interface ITokenizer
     {
-        public IEnumerable<Token> Tokenize(string text);
+        IEnumerable<Token> Tokenize(string text);
 
-        public string[] GetValues(string category);
+        string[] GetValues(string category);
 
-        public string[] GetHashtags();
+        string[] GetHashtags();
 
-        public string[] GetMentions();
+        string[] GetMentions();
 
-        public string[] GetUrls();
+        string[] GetUrls();
 
-        public string[] GetEmails();
+        string[] GetEmails();
     }
 }
