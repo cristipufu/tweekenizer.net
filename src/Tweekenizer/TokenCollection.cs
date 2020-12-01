@@ -38,6 +38,11 @@ namespace Tweekenizer
             return GetValues(TokenCategories.Email);
         }
 
+        public string[] GetTickers()
+        {
+            return GetValues(TokenCategories.TickerSymbol)
+        }
+
         public override string ToString()
         {
             return string.Join('\n', _tokens.Select(t => t.ToString()));

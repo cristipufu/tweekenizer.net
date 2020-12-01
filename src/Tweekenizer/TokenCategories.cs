@@ -16,6 +16,6 @@
         public const string Word = "word";
         public const string Symbol = "symbol";
         public const string Punctuation = "punctuation";
-        public const string Stock = "stock";
+        public const string TickerSymbol = "ticker";
     }
 }

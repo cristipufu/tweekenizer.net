@@ -12,7 +12,7 @@ namespace Tweekenizer
 
         public string Mention { get; set; } = @"@\w+";
 
-        public string StockSymbol { get; set; } = @"[$][A-Za-z][\S]*";
+        public string TickerSymbol { get; set; } = @"[$][A-Za-z][\S]*";
 
         public string HashtagL1 { get; set; } = @"#[a-z][a-z0-9]*";
 
@@ -54,7 +54,7 @@ namespace Tweekenizer
             new RegexCategory(TokenCategories.Mention, Mention),
             new RegexCategory(TokenCategories.Hashtag, HashtagL1),
             new RegexCategory(TokenCategories.Hashtag, HashtagDv),
-            new RegexCategory(TokenCategories.Stock, StockSymbol),
+            new RegexCategory(TokenCategories.TickerSymbol, TickerSymbol),
             new RegexCategory(TokenCategories.Emoji, Emoji),
             new RegexCategory(TokenCategories.Emoticon, Emoticon),
             new RegexCategory(TokenCategories.Time, Time),
