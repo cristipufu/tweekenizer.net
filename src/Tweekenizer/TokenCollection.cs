@@ -40,7 +40,7 @@ namespace Tweekenizer
 
         public string[] GetTickers()
         {
-            return GetValues(TokenCategories.TickerSymbol)
+            return GetValues(TokenCategories.TickerSymbol);
         }
 
         public override string ToString()
