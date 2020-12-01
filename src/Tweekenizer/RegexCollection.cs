@@ -6,11 +6,13 @@ namespace Tweekenizer
     {
         public string OrdinalL1 { get; set; } = @"1\dth|[04-9] th|1st|2nd|3rd|[02-9]1st|[02-9]2nd|[02-9]3rd|[02-9] [04-9] th|\d+\d[04 - 9] th|\d+\d1st|\d+\d2nd|\d+\d3rd";
 
-        public string NumberL1 { get; set; } = @"\d+\/\d+|\d(?:[\.,-\/]?\d)*(?:\.\d+)?";
+        public string NumberL1 { get; set; } = @"\d+\/\d+|\d(?:[\.,-\/]?\d)*(?:\.\d+)?[k]?";
 
         public string NumberDv { get; set; } = @"[\u0966-\u096F]+\/[\u0966-\u096F]+|[\u0966-\u096F](?:[\.,-\/]?[\u0966-\u096F])*(?:\.[\u0966-\u096F]+)?";
 
         public string Mention { get; set; } = @"@\w+";
+
+        public string StockSymbol { get; set; } = @"[$][A-Za-z][\S]*";
 
         public string HashtagL1 { get; set; } = @"#[a-z][a-z0-9]*";
 
@@ -18,7 +20,7 @@ namespace Tweekenizer
 
         public string Email { get; set; } = @"[-!#$%&'*+\/=?^\w{|}~](?:\.?[-!#$%&'*+\/=?^\w`{|}~])*@[a-z0-9](?:-?\.?[a-z0-9])*(?:\.[a-z](?:-?[a-z0-9])*)+";
 
-        public string Currency { get; set; } = @"[₿₽₹₨$£¥€₩]";
+        public string Currency { get; set; } = @"[₿₽₹₨$£¥€₩][0-9]*[k]?";
 
         public string Punctuation { get; set; } = "[’'‘’`“”\"\\[\\]\\(\\){}…,\\.!;\\?\\-:\u0964\u0965]";
 
@@ -52,13 +54,14 @@ namespace Tweekenizer
             new RegexCategory(TokenCategories.Mention, Mention),
             new RegexCategory(TokenCategories.Hashtag, HashtagL1),
             new RegexCategory(TokenCategories.Hashtag, HashtagDv),
+            new RegexCategory(TokenCategories.Stock, StockSymbol),
             new RegexCategory(TokenCategories.Emoji, Emoji),
             new RegexCategory(TokenCategories.Emoticon, Emoticon),
             new RegexCategory(TokenCategories.Time, Time),
             new RegexCategory(TokenCategories.Ordinal, OrdinalL1),
+            new RegexCategory(TokenCategories.Currency, Currency),
             new RegexCategory(TokenCategories.Number, NumberL1),
             new RegexCategory(TokenCategories.Number, NumberDv),
-            new RegexCategory(TokenCategories.Currency, Currency),
             new RegexCategory(TokenCategories.Word, WordL1),
             new RegexCategory(TokenCategories.Word, WordDv),
             new RegexCategory(TokenCategories.Punctuation, Punctuation),

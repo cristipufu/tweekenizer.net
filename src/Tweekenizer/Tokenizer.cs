@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Tweekenizer
 {
     public class Tokenizer : ITokenizer
     {
-        private readonly List<Token> _tokens;
         private readonly List<RegexCategory> _regexCategories;
 
         public Tokenizer() : this(new RegexCollection())
@@ -15,20 +13,19 @@ namespace Tweekenizer
 
         public Tokenizer(RegexCollection rgxs)
         {
-            _tokens = new List<Token>();
             _regexCategories = rgxs.Get();
         }
 
-        public IEnumerable<Token> Tokenize(string text)
+        public TokenCollection Tokenize(string text)
         {
-            _tokens.Clear();
+            var bucket = new TokenCollection();
 
-            TokenizeRecursive(text, 0);
+            TokenizeRecursive(text, 0, bucket);
 
-            return _tokens;
+            return bucket;
         }
 
-        protected void TokenizeRecursive(string text, int categoryIndex)
+        protected void TokenizeRecursive(string text, int categoryIndex, TokenCollection bucket)
         {
             if (categoryIndex == _regexCategories.Count)
             {
@@ -39,50 +36,20 @@ namespace Tweekenizer
 
             var rgx = _regexCategories[categoryIndex];
 
+            categoryIndex++;
+            
             var matches = Regex.Matches(sentence, rgx.Regex, RegexOptions.IgnoreCase);
             var fillings = Regex.Split(sentence, rgx.Regex, RegexOptions.IgnoreCase);
 
             foreach (var match in matches)
             {
-                _tokens.Add(new Token(match.ToString(), rgx.Category));
+                bucket.AddToken(new Token(match.ToString(), rgx.Category));
             }
-
-            categoryIndex++;
 
             foreach (var filling in fillings)
             {
-                TokenizeRecursive(filling, categoryIndex);
+                TokenizeRecursive(filling, categoryIndex, bucket);
             }
-        }
-
-        public string[] GetValues(string category)
-        {
-            return _tokens.Where(x => x.Category == category).Select(x => x.Value).ToArray();
-        }
-
-        public string[] GetHashtags()
-        {
-            return GetValues(TokenCategories.Hashtag);
-        }
-
-        public string[] GetMentions()
-        {
-            return GetValues(TokenCategories.Mention);
-        }
-
-        public string[] GetUrls()
-        {
-            return GetValues(TokenCategories.Url);
-        }
-
-        public string[] GetEmails()
-        {
-            return GetValues(TokenCategories.Email);
-        }
-
-        public override string ToString()
-        {
-            return string.Join('\n', _tokens.Select(t => t.ToString()));
         }
     }
 }
