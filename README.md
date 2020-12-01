@@ -1,6 +1,8 @@
 # Tweekenizer
 
-Tokenizer for social media posts and comments. It categorizes tokens into words, hashtags, mentions, urls, emails, time, numbers, emojis, emoticons using a set of regular expressions (that can be overwritten or extended).
+Tokenizer for social media posts and comments. It categorizes tokens as words, hashtags, mentions, urls, emails, time, numbers, emojis, emoticons using a set of regular expressions (that can be overwritten or extended).
+
+Can extract ticker symbols eg: $AAPL, $MRNA, $TSLA and currencies $120k, €200.
 
 Supports multiple languages.
 
@@ -15,8 +17,8 @@ Supports multiple languages.
 // Tokenize a tweet.
 var tweet = @"@MrRobot: you can contact me @ tweekenizer@gmail.com, 2 of us plan party 🎉 @MrsRobot at 3pm:) #vodka";
 var tokenizer = new Tokenizer();
-tokenizer.Tokenize(tweet);
-//tokenizer.ToString():
+var tokens = tokenizer.Tokenize(tweet);
+//tokens.ToString():
 //Token { Value = tweekenizer@gmail.com, Category = email }
 //Token { Value = @MrRobot, Category = mention }
 //Token { Value = you, Category = word }
@@ -40,8 +42,8 @@ tokenizer.Tokenize(tweet);
 
 // Tokenize a French sentence.
 var french = @"Je suis désolé:(";
-tokenizer.Tokenize(french);
-//tokenizer.ToString();
+var tokens = tokenizer.Tokenize(french);
+//tokens.ToString();
 //Token { Value = :(, Category = emoticon }
 //Token { Value = e, Category = word }
 //Token { Value = suis, Category = word }
